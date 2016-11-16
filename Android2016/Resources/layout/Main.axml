@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:requiresFadingEdge="none"
+    android:paddingTop="15dp"
+    android:paddingRight="15dp"
+    android:paddingLeft="15dp"
+    android:paddingBottom="15dp"
+    android:background="#ff424242">
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/TextUserName"
+        android:paddingTop="15dp"
+        android:paddingLeft="5dp"
+        android:background="#fff5f5f5"
+        android:textColor="#ff424242"
+        android:hint="Enter Username"
+        android:tag="TextUserName"
+        android:phoneNumber="true"
+        android:textColorHint="#ffd50000"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:layout_gravity="center" />
+    <EditText
+        android:inputType="textPassword"
+        android:layout_width="match_parent"
+        android:id="@+id/TextPassWord"
+        android:phoneNumber="true"
+        android:paddingTop="15dp"
+        android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
+        android:background="#fff5f5f5"
+        android:layout_marginTop="10dp"
+        android:textColor="#ff212121"
+        android:hint="Enter Password"
+        android:layout_gravity="center"
+        android:paddingRight="5dp"
+        android:paddingBottom="5dp"
+        android:textColorHint="#ffd50000" />
+    <Button
+        android:text="Login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ButtonLogin"
+        android:layout_marginTop="44.0dp"
+        android:background="#ffff5722"
+        android:textColor="#fffafafa"
+        android:gravity="center"
+        android:textAlignment="center" />
+    <TextView
+        android:text="By logging in you are agreeing to terms and conditions."
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView1" />
+</LinearLayout>

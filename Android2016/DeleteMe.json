@@ -1,0 +1,104 @@
+﻿
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+
+using Android.App;
+using Android.Content;
+using Android.OS;
+using Android.Runtime;
+using Android.Views;
+using Android.Widget;
+using Newtonsoft.Json;
+using Org.Json;
+
+namespace Android2016
+{
+	[Activity(Label = "MembersActivity")]
+	public class MembersActivity : ListActivity
+	{
+		//String[] listItems = { "item 1", "item 2 ", "list", "android", "item 3", "foobar", "bar", };
+
+		List<MemberVM> memberVMs = new List<MemberVM>();
+		ListView listView;
+
+		protected override void OnCreate(Bundle savedInstanceState)
+		{
+			//MemberVM member = new MemberVM();
+			base.OnCreate(savedInstanceState);
+			//ListView Page
+			SetContentView(Android.Resource.Layout.ListContent);
+			listView = FindViewById<ListView>(Resource.Id.listView1);
+
+			memberVMs.Add(new MemberVM()
+			{
+				FirstName = "Lee",
+				LastName = "Walls",
+				TelephoneNumber = "4787333507"
+			});
+
+		//	listView.Adapter = new MemberAdapter(this, memberVMs);
+		}
+
+		public class MemberAdapter : BaseAdapter<MemberVM>
+		{
+			List<MemberVM> items;
+			Activity context;
+			public MemberAdapter(Activity context, List<MemberVM> items)
+				: base()
+			{
+				this.context = context;
+				this.items = items;
+			}
+			public override long GetItemId(int position)
+			{
+				return position;
+			}
+			public override MemberVM this[int position]
+			{
+				get { return items[position]; }
+			}
+			public override int Count
+			{
+				get { return items.Count; }
+			}
+			public override View GetView(int position, View convertView, ViewGroup parent)
+			{
+				var item = items[position];
+
+				View view = convertView;
+				if (view == null) // no view to re-use, create new
+					view = context.LayoutInflater.Inflate(Resource.Layout.Members, null);
+					view.FindViewById<TextView>(Resource.Id.textView2).Text = item.FirstName;
+					view.FindViewById<TextView>(Resource.Id.textView3).Text = item.TelephoneNumber;
+				//view.FindViewById<ImageView>(Resource.Id.imageView1).SetBackgroundColor(item.Color);
+
+				return view;
+			}
+		}
+
+			//string text = Intent.GetStringExtra("MyData") ?? "Data not available";
+			//JSONArray jsonArray = new JSONArray(text);
+			//int length = jsonArray.Length();
+			//List<String> listContents = new List<String>(length);
+			//for (int i = 0; i < length; i++)
+			//{
+			//	listContents.Add(jsonArray.GetString(i));
+			//}
+			//ListAdapter = new ArrayAdapter<String>(this, Android.Resource.Layout.SimpleListItem1, listContents);
+			//ListAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, listItems);
+			//var members = JsonConvert.DeserializeObject<IList<MemberVM>>(text);
+			//SetContentView(Resource.Layout.Members);
+			//ListAdapter = new ArrayAdapter(this, Android.Resource.Layout.SimpleListItem1, listItems);
+			//ListAdapter = new ListAdapter;
+			//<MemberVM>(this, Android.Resource.Layout.SimpleListItem2, member.FirstName );
+			//ListAdapter = ListAdapter;
+			//SetContentView(Resource.Layout.Members);
+			//ArrayAdapter adapter = new ArrayAdapter(members, Resource.Layout.Members);
+			//this.ListViewMembers = IList<List>;
+			//FindViewById<ListView>(Resource.Id.ListViewMembers);
+			//var intent = new Intent(this, typeof(MembersView));
+			//StartActivity(intent);
+	}
+}
