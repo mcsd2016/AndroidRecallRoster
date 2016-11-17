@@ -32,8 +32,9 @@ namespace Android2016
 		
 			Xamarin.Forms.Forms.Init(this, savedInstanceState);
 
-			this.Title = "  AFRC RECALL ROSTER";
-			this.ActionBar.SetBackgroundDrawable(new ColorDrawable(Color.ParseColor("#ff424242")));
+			this.Title = "AFRC RECALL ROSTER";
+
+			this.ActionBar.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Black));
 			this.TitleColor = Color.ParseColor("#ff424242");
 
 			SetContentView(Resource.Layout.Main);
@@ -46,7 +47,7 @@ namespace Android2016
 		public async void downloadAsync()
 		{
 			ProgressDialog progress = new ProgressDialog(this);
-			progress.SetTitle("Loading");
+			//progress.SetTitle("Loading");
 			progress.SetMessage("Wait while loading...");
 			progress.SetCancelable(false); // disable dismiss by tapping outside of the dialog
 			progress.Show();
@@ -80,16 +81,16 @@ namespace Android2016
 				{
 					var responseString = await response.Content.ReadAsStringAsync();
 
-					var activity2 = new Intent(this, typeof(MemberListActivity));
-					activity2.PutExtra("MyData", responseString);
-					StartActivity(activity2);
+					var MemberListActivity = new Intent(this, typeof(MemberListActivity));
+					MemberListActivity.PutExtra("MyData", responseString);
+					StartActivity(MemberListActivity);
 				}
 				else
-					//TODO just change this to a table row that displays error message.
 				{
-					SetContentView(Resource.Layout.ErrorWarning);
+					//TODO just change this to a table row that displays error message.
+					var ErrorActivity = new Intent(this, typeof(ErrorActivity));
+					StartActivity(ErrorActivity);
 				}
-
 				progress.Dismiss();
 			}
 		}
