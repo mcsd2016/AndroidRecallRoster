@@ -11,7 +11,6 @@ using Android.Views;
 using Android.Content;
 using Org.Json;
 using Java.Lang;
-using Plugin.Messaging;
 using Android.Content.PM;
 using Android.Graphics.Drawables;
 using Android.Graphics;
@@ -29,18 +28,12 @@ namespace Android2016
 		protected override void OnCreate(Bundle savedInstanceState)
 		{
 			base.OnCreate(savedInstanceState);
-		
-			Xamarin.Forms.Forms.Init(this, savedInstanceState);
-
+			//Xamarin.Forms.Forms.Init(this, savedInstanceState);
 			this.Title = "AFRC RECALL ROSTER";
-
 			this.ActionBar.SetBackgroundDrawable(new ColorDrawable(Android.Graphics.Color.Black));
 			this.TitleColor = Color.ParseColor("#ff424242");
-
 			SetContentView(Resource.Layout.Main);
-
 			this.ButtonLogin = FindViewById<Button>(Resource.Id.ButtonLogin);
-
 			ButtonLogin.Click += ((sender, e) => downloadAsync());
 		}
 
@@ -48,7 +41,7 @@ namespace Android2016
 		{
 			ProgressDialog progress = new ProgressDialog(this);
 			//progress.SetTitle("Loading");
-			progress.SetMessage("Wait while loading...");
+			progress.SetMessage("Retrieving Users...");
 			progress.SetCancelable(false); // disable dismiss by tapping outside of the dialog
 			progress.Show();
 
@@ -59,28 +52,17 @@ namespace Android2016
 
 			using (var Client = new HttpClient())
 			{
-				var values = new Dictionary<string, string>
-					{
-						{"UserName", un},
-						{"PassWord", pw}
-					};
-
+				var values = new Dictionary<string, string>{{"UserName", un},{"PassWord", pw}};
 				var content = new FormUrlEncodedContent(values);
-
 				var url = "https://129.54.2.82/RRAPI/api/users/login/";
-
 				Client.DefaultRequestHeaders.Accept.Clear();
-
 				Client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-
 				ServicePointManager.ServerCertificateValidationCallback += (sender, cert, chain, sslPolicyErrors) => true;
-
 				var response = await Client.PostAsync(url, content);
 
 				if (response.IsSuccessStatusCode)
 				{
 					var responseString = await response.Content.ReadAsStringAsync();
-
 					var MemberListActivity = new Intent(this, typeof(MemberListActivity));
 					MemberListActivity.PutExtra("MyData", responseString);
 					StartActivity(MemberListActivity);
