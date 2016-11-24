@@ -50,7 +50,7 @@ namespace Android2016
 				this.MemberRow.SetBackgroundColor(Android.Graphics.Color.White);
 
 				this.FirstName = new TextView(this);
-				this.FirstName.SetPadding(15,0,15,0);
+				this.FirstName.SetPadding(15, 0, 15, 0);
 				this.FirstName.SetMinWidth(0);
 				this.FirstName.SetTextColor(Android.Graphics.Color.Black);
 
@@ -72,7 +72,8 @@ namespace Android2016
 				this.FirstName.Text = m.FirstName.ToString();
 				this.LastName.Text = m.LastName.ToString();
 				this.TelephoneNumber.Text = m.TelephoneNumber.ToString();
-				this.TelephoneNumber.Click += ((sender, e) => CallAsync(m.TelephoneNumber));
+				//Chaneg function to CallAsyn to bypass yes no alert
+				this.TelephoneNumber.Click += ((sender, e) => PreCallAsync(m.TelephoneNumber));
 
 				this.MemberRow.AddView(this.FirstName);
 				this.MemberRow.AddView(this.LastName);
@@ -85,6 +86,16 @@ namespace Android2016
 			SetContentView(this.TableLayout);
 		}
 
+		public void PreCallAsync(string m)
+		{
+			new AlertDialog.Builder(this)
+			.SetTitle("Call" + " - " + m)
+			.SetMessage("Are You Sure?")
+			.SetCancelable(false)
+			               .SetPositiveButton("Yes", delegate { CallAsync(m); })
+			.SetNegativeButton("No", delegate { })
+			.Show();
+		}
 
 		public void CallAsync(string m)
 		{
@@ -93,5 +104,18 @@ namespace Android2016
 			Intent intent = new Intent(Intent.ActionCall, Android.Net.Uri.Parse(mem));
 			StartActivity(intent);
 		}
+
+		//http://stackoverflow.com/questions/16660632/how-to-display-messagebox-in-monodroid
+		public override void OnBackPressed()
+		{
+			new AlertDialog.Builder(this)
+			.SetTitle("Exit App")
+			.SetMessage("Are You Sure?")
+			.SetCancelable(false)
+			.SetPositiveButton("Yes", delegate { Finish(); })
+			.SetNegativeButton("No", delegate { })
+			.Show();
+		}
+		
 	}
 }

@@ -66,12 +66,24 @@ namespace Android2016
 					var MemberListActivity = new Intent(this, typeof(MemberListActivity));
 					MemberListActivity.PutExtra("MyData", responseString);
 					StartActivity(MemberListActivity);
+					//To Make Main Page not able to be history if true but still if false
+					Finish();
 				}
 				else
 				{
-					//TODO just change this to a table row that displays error message.
-					var ErrorActivity = new Intent(this, typeof(ErrorActivity));
-					StartActivity(ErrorActivity);
+					//Disabling Activity and making Pop up show error
+					//var ErrorActivity = new Intent(this, typeof(ErrorActivity));
+					//StartActivity(ErrorActivity);
+
+
+			new AlertDialog.Builder(this)
+			.SetTitle("Invalid Credentials")
+			.SetMessage("Want to retry?")
+			.SetCancelable(false)
+			.SetPositiveButton("Yes", delegate { })
+			.SetNegativeButton("No", delegate { Finish(); })
+			.Show();
+					
 				}
 				progress.Dismiss();
 			}

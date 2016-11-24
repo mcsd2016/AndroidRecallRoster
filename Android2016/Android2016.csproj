@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Android2016</RootNamespace>
     <AssemblyName>Android2016</AssemblyName>
-    <TargetFrameworkVersion>v7.0</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v6.0</TargetFrameworkVersion>
     <AndroidApplication>True</AndroidApplication>
     <AndroidResgenFile>Resources\Resource.designer.cs</AndroidResgenFile>
     <AndroidResgenClass>Resource</AndroidResgenClass>
@@ -89,6 +89,7 @@
     <Compile Include="SplashScreen.cs" />
     <Compile Include="MemberListActivity.cs" />
     <Compile Include="ErrorActivity.cs" />
+    <Compile Include="MemberListAct.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
@@ -113,6 +114,7 @@
     <AndroidResource Include="Resources\mipmap-hdpi\Icon.png" />
     <AndroidResource Include="Resources\mipmap-hdpi\IconLogo.png" />
     <AndroidResource Include="Resources\layout\List.axml" />
+    <AndroidResource Include="Resources\layout\MemberLayoutList.axml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\drawable\" />
@@ -124,24 +126,12 @@
       <Version>2.4.2</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
-    <XamarinComponentReference Include="Xam.Plugins.Messaging">
-      <Version>3.2.1.0</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="sqlite-net">
-      <Version>1.0.11</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
     <XamarinComponentReference Include="json.net">
       <Version>7.0.1</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
     <XamarinComponentReference Include="loginscreen">
       <Version>1.4.1</Version>
-      <Visible>False</Visible>
-    </XamarinComponentReference>
-    <XamarinComponentReference Include="ExternalMapsPlugin">
-      <Version>1.0.4</Version>
       <Visible>False</Visible>
     </XamarinComponentReference>
   </ItemGroup>
