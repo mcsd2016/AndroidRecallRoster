@@ -43,7 +43,7 @@ namespace Android2016
 			foreach (MemberVM m in parsedMemberObjectFromResponse)
 			{
 				adapter.Add(string.Format("{0} {1} {2}", m.FirstName, m.LastName, m.TelephoneNumber));
-				// uncomment if you want live update
+				// uncomment if you want live update //
 				// adapter.NotifyDataSetChanged();
 			}
 			this.ListView.Adapter = adapter;
